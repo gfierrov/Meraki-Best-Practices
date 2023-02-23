@@ -3,6 +3,8 @@ import meraki
 import requests, json, time, datetime
 from MerakiBW import uplinkBW
 from MerakiRFProfile import rfProfile
+from MerakiFirmwareCode import firmware
+from prettytable import PrettyTable
 
 geturl = "https://api.meraki.com/api/v1/organizations"
 payload={}
@@ -77,6 +79,8 @@ devicesURL = "https://api.meraki.com/api/v1/networks/" + id2 +"/devices"
 
 uplinkBW(id2,API_KEY)
 rfProfile(id2,API_KEY)
+firmware(id2,API_KEY)
+
 
 responseDevices = requests.request("GET",devicesURL, headers=headers, data= payload)
 allDevices= json.loads(responseDevices.text)
@@ -84,6 +88,11 @@ allDevices= json.loads(responseDevices.text)
 print("Network Devices:")
 for devices in allDevices:
     print("Model: {}\t SN: {}".format(devices["model"],devices["serial"]))
+
+
+
+
+
 
 
 
