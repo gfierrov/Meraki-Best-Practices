@@ -5,8 +5,6 @@ def firmware(id,api):
 
     dashboard = meraki.DashboardAPI(api, output_log=False, print_console=False)
 
-    #network_id = 'L_624311498344253855'
-    #network_id = 'L_624311498344247493'
     network_id = id
 
     """Get the available version """
