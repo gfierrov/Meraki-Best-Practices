@@ -76,7 +76,7 @@ def firmware(id,api):
 
     """Put the info into a Pretty Table """
     table = PrettyTable()
-    table.title = "Devices Firmware"
+    table.title = "Firmware"
     table.field_names=["Name", "Serial", "Model",  "Current Version", "Available Version"]
     for row in listDevices:
         table.add_row(row)
