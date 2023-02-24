@@ -5,6 +5,7 @@ from MerakiBW import uplinkBW
 from MerakiRFProfile import rfProfile
 from MerakiFirmwareCode import firmware
 from prettytable import PrettyTable
+from MerakiLB import uplinkLB
 
 geturl = "https://api.meraki.com/api/v1/organizations"
 payload={}
@@ -80,6 +81,7 @@ devicesURL = "https://api.meraki.com/api/v1/networks/" + id2 +"/devices"
 uplinkBW(id2,API_KEY)
 rfProfile(id2,API_KEY)
 firmware(id2,API_KEY)
+uplinkLB(id2,API_KEY)
 
 
 responseDevices = requests.request("GET",devicesURL, headers=headers, data= payload)
