@@ -18,7 +18,6 @@ def firmware(id,api):
     )
 
 
-
     """Get the available firmware from every single meraki devices"""
 
     applianceFirmware = (response["products"]["appliance"]["availableVersions"])
@@ -50,27 +49,41 @@ def firmware(id,api):
         listDevicesVar = [deviceName, deviceSerial, deviceModel, deviceFirmware]
         listDevices.append(listDevicesVar)
 
-    """Print the availanle applicances versions"""
+    """Print the available applicances versions"""
     #print(availableAppl)
     #print(availableSw)
     #print(availableWireless)
+    #print(listDevices)
 
 
     """ Searching device string in current devices list and add the available version """
     search_appliance = "wired"
     search_switch = "switch"
     search_wireless = "wireless"
+    search_notConfigVersion = "Not"
 
 
     for i in range(len(listDevices)):
         for j in range(len(listDevices[i])):
             if search_wireless in listDevices[i][j]:
                 listDevices[i].append(availableWireless)
-            if search_switch in listDevices[i][j]:
+            elif search_switch in listDevices[i][j]:
                 listDevices[i].append(availableSw)
-            if search_appliance in listDevices[i][j]:
+            elif search_appliance in listDevices[i][j]:
                 listDevices[i].append(availableAppl)
+            elif search_notConfigVersion in listDevices[i][j]:
+                data = str(deviceModel)
+                if data.startswith("MR"):
+                    listDevices[i].append(availableWireless)
+                elif data.startswith("MX"):
+                    listDevices[i].append(availableAppl)
+                elif data.startswith("MS"):
+                    listDevices[i].append(availableSw)
 
+    #Check responses
+    print(response)
+    print(responseDevices)
+    print(listDevices)
 
     """Put the info into a Pretty Table """
     table = PrettyTable()
@@ -81,6 +94,9 @@ def firmware(id,api):
     print()
     print(table)
     print()
+    # Create a CSV file fom the meraki organization policy objects
+    with open("Meraki_Firwmare.csv", "w", newline="") as file_output:
+        file_output.write(table.get_csv_string())
 
 
 

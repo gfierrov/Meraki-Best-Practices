@@ -1,4 +1,4 @@
-API_KEY = ""
+API_KEY = "2a67ac33ea4ddf9e02d495802c5aacbc50303976"
 import meraki
 import requests, json, time, datetime
 from MerakiBW import uplinkBW
