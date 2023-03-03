@@ -71,6 +71,7 @@ def firmware(id,api):
                 listDevices[i].append(availableSw)
             elif search_appliance in listDevices[i][j]:
                 listDevices[i].append(availableAppl)
+            #Fix the "Not running current verion" in the devices list
             elif search_notConfigVersion in listDevices[i][j]:
                 data = str(deviceModel)
                 if data.startswith("MR"):
