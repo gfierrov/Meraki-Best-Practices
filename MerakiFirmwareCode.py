@@ -82,9 +82,9 @@ def firmware(id,api):
                     listDevices[i].append(availableSw)
 
     #Check responses
-    print(response)
-    print(responseDevices)
-    print(listDevices)
+    #print(response)
+    #print(responseDevices)
+    #print(listDevices)
 
     """Put the info into a Pretty Table """
     table = PrettyTable()
